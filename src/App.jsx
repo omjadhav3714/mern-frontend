@@ -5,13 +5,16 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 
+const API_URL = import.meta.env.VITE_BACKEND_URL;
+const APP_NAME = import.meta.env.VITE_APP_NAME;
+
 function Register() {
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-// process.env.REACT_VITE_BACKEND_URL
+// process.env.VITE_BACKEND_URL
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -25,7 +28,7 @@ function Register() {
 
     console.log(payload)
 
-    const response = await fetch(`${import.meta.env.REACT_VITE_BACKEND_URL}/users/register`, {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -54,6 +57,10 @@ function Register() {
             <div className="form-header">
               <h2>Create Account</h2>
               <p>Join our community today</p>
+
+              <p>
+                {APP_NAME} - Connecting you to the world of MERN!
+              </p>
             </div>
             <form className="registration-form">
               <div className="input-group">
@@ -92,7 +99,7 @@ function Login() {
 
     console.log(payload)
 
-    const response = await fetch(`${import.meta.env.REACT_VITE_BACKEND_URL}/users/login`, {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -158,7 +165,7 @@ function Products() {
         alert("User Not Logged In")
         return
       }
-      const response = await fetch(`${import.meta.env.REACT_VITE_BACKEND_URL}/products`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/products`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -181,7 +188,7 @@ function Products() {
     };
 
     const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
-    const response = await fetch(`${import.meta.env.REACT_VITE_BACKEND_URL}/products`, {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/products`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
