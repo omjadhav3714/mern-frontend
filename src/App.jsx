@@ -11,6 +11,7 @@ function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+// process.env.REACT_VITE_BACKEND_URL
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -24,7 +25,7 @@ function Register() {
 
     console.log(payload)
 
-    const response = await fetch("http://localhost:5000/users/register", {
+    const response = await fetch(`${import.meta.env.REACT_VITE_BACKEND_URL}/users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -91,7 +92,7 @@ function Login() {
 
     console.log(payload)
 
-    const response = await fetch("http://localhost:5000/users/login", {
+    const response = await fetch(`${import.meta.env.REACT_VITE_BACKEND_URL}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -157,7 +158,7 @@ function Products() {
         alert("User Not Logged In")
         return
       }
-      const response = await fetch('http://localhost:5000/products', {
+      const response = await fetch(`${import.meta.env.REACT_VITE_BACKEND_URL}/products`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -180,7 +181,7 @@ function Products() {
     };
 
     const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
-    const response = await fetch("http://localhost:5000/products", {
+    const response = await fetch(`${import.meta.env.REACT_VITE_BACKEND_URL}/products`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
